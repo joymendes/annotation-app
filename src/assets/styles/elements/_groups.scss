@@ -1,9 +1,9 @@
 .app-groups {
   position: relative;
   width: 100%;
-  min-height: 85vh;
+  min-height: calc(100vh - 250px);
   overflow: hidden;
-  padding-top: 100px;
+  padding: 100px 0 150px;
 
   &__wrapper {
     padding: 16px 24px;
