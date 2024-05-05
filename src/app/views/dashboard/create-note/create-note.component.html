@@ -1,0 +1,28 @@
+<app-header
+  [userData]="userData"
+  [goBack]="true"
+  [title]="'Criar Nota'">
+</app-header>
+
+<div class="app-create-note">
+  <div class="app-create-note__wrapper">
+    <form [formGroup]="formGroup">
+      <textarea
+        autofocus
+        matInput
+        rows="20"
+        placeholder="Comece sua anotação"
+        formControlName="text"
+        required
+        maxlength="255"
+        style="resize: none;"
+      ></textarea>
+    </form>
+  </div>
+</div>
+
+<app-footer
+  [buttonText]="'SALVAR'"
+  [icon]="'save'"
+  (onFirstButtonClick)="addNote()">
+</app-footer>

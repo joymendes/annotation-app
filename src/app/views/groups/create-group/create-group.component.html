@@ -1,0 +1,52 @@
+<app-header [userData]="userData" [goBack]="true" [title]="'Criar Grupo'">
+</app-header>
+
+<div class="app-create-group">
+  <div class="app-create-group__wrapper">
+    <h2>Digite os campos abaixo:</h2>
+
+    <form [formGroup]="formGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome do grupo</mat-label>
+        <input matInput formControlName="name"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email dos membros</mat-label>
+        <mat-chip-grid #chipGrid>
+          <mat-chip-row
+            *ngFor="let email of emails; trackBy: trackByEmail"
+            [removable]="true"
+            [editable]="true"
+            (removed)="remove(email)"
+            (edited)="edit(email, $event)"
+          >
+            {{ email }}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          <input
+            placeholder="Digite um email ou mais..."
+            formControlName="emails"
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-grid>
+      </mat-form-field>
+      <small color="warn">
+        * Para adicionar mais de um membro, separe cada email por uma vírgula ou
+        pressione enter ao escrever.
+      </small>
+    </form>
+  </div>
+</div>
+
+<app-footer
+  [buttonText]="'CRIAR'"
+  [icon]="'check'"
+  (onFirstButtonClick)="addGroup()"
+>
+</app-footer>

@@ -1,0 +1,39 @@
+.app-dashboard {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  overflow: hidden;
+  padding-top: 100px;
+
+  &__wrapper {
+    padding: 16px 24px;
+
+    h2 {
+      color: $secondary;
+      margin-bottom: 16px !important;
+    }
+  }
+
+  &__content-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 24px;
+  }
+
+  &__cards {
+    display: grid;
+    gap: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    background: $on-secondary;
+
+    a {
+      cursor: pointer;
+      width: fit-content;
+
+      mat-icon {
+        color: $secondary;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background: $background;
+  width: 100%;
+  max-width: 576px;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+
+    h1 {
+      font-weight: 700;
+    }
+
+    mat-icon {
+      color: white;
+    }
+  }
+
+  &__back {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 24px;
+
+    h1 {
+      font-weight: 700;
+    }
+
+    mat-icon {
+      color: white;
+    }
+  }
+}

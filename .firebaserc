@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "prjpwa-unilasalle-anotacoes": {
+      "hosting": {
+        "annotation-app": [
+          "prjpwa-unilasalle-anotacoes"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "prjpwa-unilasalle-anotacoes"
+  }
+}

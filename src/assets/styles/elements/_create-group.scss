@@ -1,0 +1,29 @@
+.app-create-group {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  overflow: hidden;
+  padding-top: 100px;
+
+  &__wrapper {
+    padding: 16px 24px;
+
+    h2 {
+      color: $secondary;
+      margin-bottom: 16px !important;
+    }
+
+    form {
+      display: grid;
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      small {
+        color: $secondary;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,35 @@
+<section class="app-footer">
+  <section class="app-footer__wrapper">
+    <ng-container *ngIf="!buttonText; else showButtonText">
+      <button
+        mat-fab color="primary"
+        class="app-footer__add"
+        (click)="firstButtonClick()"
+      >
+        <mat-icon>{{ icon ? icon : 'add' }}</mat-icon>
+      </button>
+    </ng-container>
+    <ng-template #showButtonText>
+      <button
+        mat-raised-button
+        color="primary"
+        class="app-footer__add"
+        (click)="firstButtonClick()"
+      >
+        {{ buttonText }}
+        <mat-icon>{{ icon ? icon : 'add' }}</mat-icon>
+      </button>
+    </ng-template>
+
+    <mat-toolbar class="toolbarNav">
+      <button mat-flat-button routerLink="/dashboard" routerLinkActive="active-link">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <span>Home</span>
+      </button>
+      <button mat-flat-button routerLink="/grupos" routerLinkActive="active-link">
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <span>Grupos</span>
+      </button>
+    </mat-toolbar>
+  </section>
+</section>

@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import './assets/styles/main';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+$primary-palette: mat.define-palette(mat.$deep-purple-palette, 100);
+$accent-palette: mat.define-palette(mat.$amber-palette);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+$typography-config: mat.define-typography-config(
+  $font-family: 'Inter, sans-serif',
+);
+
+$theme-config: (
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette
+  ),
+  typography: $typography-config,
+  density: null
+);
+
+$theme: mat.define-dark-theme($theme-config);
+
+@include mat.all-component-themes($theme);
+
+// Estilos globais
+body {
+  font-family: 'Inter', sans-serif !important;
+  background-color: $background;
+  width: 100%;
+  max-width: 576px;
+  margin: 0 auto;
+}
+
+h1,h2,p {
+  font-family: 'Inter', sans-serif !important;
+  margin: 0 !important;
+  color: white
+}
+
+section { display: grid; }
+
+.mat-mdc-unelevated-button:not(:disabled) {
+  color: $on-primary !important;
+}

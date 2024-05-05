@@ -1,0 +1,35 @@
+<app-header
+  [userData]="userData">
+</app-header>
+
+<div class="app-dashboard">
+  <div class="app-dashboard__wrapper">
+    <h2>Suas Anotações</h2>
+
+    <div class="app-dashboard__content-wrapper" *ngIf="userNotes?.length > 0; else noData">
+      <ng-container *ngFor="let note of userNotes">
+        <div class="app-dashboard__cards">
+          <!-- <h3>{{note.title}}</h3> -->
+          <p>{{note?.content}}</p>
+
+          <a [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </a>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deleteNote(note.key)">Deletar Anotação</button>
+          </mat-menu>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #noData>
+      <div class="app-dashboard__no-data">
+        <p>Você ainda não possui nenhuma anotação.</p>
+        <p>Deseja criar uma? Clique no botão inferior direito.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<app-footer
+  (onFirstButtonClick)="navigate('/dashboard/criar')">
+</app-footer>

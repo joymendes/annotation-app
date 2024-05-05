@@ -1,0 +1,24 @@
+.app-create-note {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  overflow: hidden;
+  padding-top: 100px;
+
+  &__wrapper {
+    padding: 16px 24px;
+
+    textarea {
+      width: 100% !important;
+      border: none;
+      background: none;
+      color: white;
+      font-size: 16px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+}

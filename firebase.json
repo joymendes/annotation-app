@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "annotation-app",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "us-central1"
+      }
+    }
+  ]
+}

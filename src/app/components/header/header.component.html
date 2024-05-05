@@ -1,0 +1,17 @@
+<div class="app-header">
+  <div class="app-header__title" *ngIf="!goBack; else showGoBack">
+    <h1>Olá, {{ userData?.displayName }}!</h1>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
+  <ng-template #showGoBack>
+    <div class="app-header__back">
+      <button mat-icon-button (click)="navigateToBack()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <h1>{{ title }}</h1>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,45 @@
+.app-groups {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  overflow: hidden;
+  padding-top: 100px;
+
+  &__wrapper {
+    padding: 16px 24px;
+
+    h2 {
+      color: $secondary;
+      margin-bottom: 16px !important;
+    }
+  }
+
+  &__content-wrapper {
+    display: grid;
+    gap: 24px;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: normal;
+    gap: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    background: $on-secondary;
+
+    p {
+      color: $primary;
+    }
+
+    a {
+      cursor: pointer;
+      width: fit-content;
+
+      mat-icon {
+        color: $primary;
+      }
+    }
+  }
+}

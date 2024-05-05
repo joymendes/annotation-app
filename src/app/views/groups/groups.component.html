@@ -1,0 +1,35 @@
+<app-header
+  [userData]="userData">
+</app-header>
+
+<div class="app-groups">
+  <div class="app-groups__wrapper">
+    <h2>Seus Grupos</h2>
+
+    <div class="app-groups__content-wrapper" *ngIf="userGroups?.length > 0; else noData">
+      <ng-container *ngFor="let group of userGroups">
+        <div class="app-groups__cards">
+          <!-- <h3>{{note.title}}</h3> -->
+          <p>{{group?.title}}</p>
+
+          <a [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </a>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Sair do Grupo</button>
+          </mat-menu>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #noData>
+      <div class="app-dashboard__no-data">
+        <p>Você ainda não participa de nenhum grupo.</p>
+        <p>Deseja criar um? Clique no botão inferior direito.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<app-footer
+  (onFirstButtonClick)="navigate('/grupos/criar')">
+</app-footer>
