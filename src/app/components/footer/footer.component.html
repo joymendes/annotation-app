@@ -1,25 +1,27 @@
 <section class="app-footer">
   <section class="app-footer__wrapper">
-    <ng-container *ngIf="!buttonText; else showButtonText">
-      <button
-        mat-fab color="primary"
-        class="app-footer__add"
-        (click)="firstButtonClick()"
-      >
-        <mat-icon>{{ icon ? icon : 'add' }}</mat-icon>
-      </button>
+    <ng-container *ngIf="!hideButton">
+      <ng-container *ngIf="!buttonText; else showButtonText">
+        <button
+          mat-fab color="primary"
+          class="app-footer__add"
+          (click)="firstButtonClick()"
+        >
+          <mat-icon>{{ icon ? icon : 'add' }}</mat-icon>
+        </button>
+      </ng-container>
+      <ng-template #showButtonText>
+        <button
+          mat-raised-button
+          color="primary"
+          class="app-footer__add"
+          (click)="firstButtonClick()"
+        >
+          {{ buttonText }}
+          <mat-icon>{{ icon ? icon : 'add' }}</mat-icon>
+        </button>
+      </ng-template>
     </ng-container>
-    <ng-template #showButtonText>
-      <button
-        mat-raised-button
-        color="primary"
-        class="app-footer__add"
-        (click)="firstButtonClick()"
-      >
-        {{ buttonText }}
-        <mat-icon>{{ icon ? icon : 'add' }}</mat-icon>
-      </button>
-    </ng-template>
 
     <mat-toolbar class="toolbarNav">
       <button mat-flat-button routerLink="/dashboard" routerLinkActive="active-link">

@@ -1,0 +1,71 @@
+<app-header
+  [userData]="userData"
+  [goBack]="true"
+  [title]="''">
+</app-header>
+
+<div class="app-view-group-note" *ngIf="this.note">
+  <div class="app-view-group-note__wrapper">
+    <mat-card>
+      <mat-card-header>
+        <div class="app-view-group-note__details">
+          <div class="app-view-group-note__user">
+            <img [src]="author?.photoURL" alt="">
+
+            <h3>{{ author?.displayName }}</h3>
+          </div>
+
+          <span>{{ note?.timestamp | date:'dd/MM/yy' }}</span>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ note?.content }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <h2>Comentários</h2>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="formGroup">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Escreva um comentário</mat-label>
+            <textarea
+              formControlName="comment"
+              matInput placeholder="Escreva um comentário"
+              (keydown.enter)="submitComment()"
+            ></textarea>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <ng-container *ngIf="noteComments?.length > 0">
+        <mat-divider></mat-divider>
+
+        <div class="app-view-group-note__comments" *ngFor="let comment of noteComments">
+          <mat-card-header>
+            <div class="app-view-group-note__details">
+              <div class="app-view-group-note__user">
+                <img [src]="comment?.photoURL" alt="">
+
+                <h3>{{ comment?.displayName }}</h3>
+              </div>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ comment?.content }}
+            </p>
+          </mat-card-content>
+        </div>
+      </ng-container>
+    </mat-card>
+  </div>
+</div>
+
+<app-footer
+  (onFirstButtonClick)="navigate('/dashboard/criar')">
+</app-footer>

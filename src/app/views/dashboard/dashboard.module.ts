@@ -7,6 +7,7 @@ import { CreateNoteComponent } from './create-note/create-note.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewNoteComponent } from './view-note/view-note.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    CreateNoteComponent
+    CreateNoteComponent,
+    ViewNoteComponent
   ],
   imports: [
     CommonModule,

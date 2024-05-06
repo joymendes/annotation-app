@@ -3,19 +3,23 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/ro
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { LoaderService } from '../services/loader.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private loaderService: LoaderService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return this.authService.user$.pipe(
+    this.loaderService.show();
+
+    return this.authService.isLoggedIn().pipe(
       take(1),
       map(user => {
         const isLoginRoute = state.url === '/';
+        this.loaderService.hide();
 
         if (user && isLoginRoute) {
           this.router.navigate(['/dashboard']);

@@ -3,6 +3,7 @@ import { GroupsService } from '../services/groups.service';
 import { AuthService } from '../../core/services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoaderService } from '../../core/services/loader.service';
 
 @Component({
   selector: 'app-groups',
@@ -14,13 +15,19 @@ export class GroupsComponent {
   public userGroups: any;
 
   constructor(
+    private loaderService: LoaderService,
     private groupsService: GroupsService,
     private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.getUserData();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   getUserData() {
@@ -30,9 +37,7 @@ export class GroupsComponent {
           if(response) {
             this.userData = response;
 
-            console.log(response);
-
-            this.getGroups(this.userData?.email);
+            this.getGroups(this.userData?.uid);
           }
         },
         (error) => {
@@ -42,16 +47,17 @@ export class GroupsComponent {
     )
   }
 
-  getGroups(email: string) {
-    const encodedEmail = btoa(email);
-
-    console.log(encodedEmail, 'enc');
-
-    this.groupsService.getUserGroups(encodedEmail).subscribe(groups => {
+  getGroups(uid: string) {
+    this.groupsService.getUserGroups(uid).subscribe(groups => {
       if(groups) {
         this.userGroups = groups;
+        this.loaderService.hide();
       }
     });
+  }
+
+  goToGroupNotes(groupId: string) {
+    this.router.navigate(['grupos', groupId]);
   }
 
   navigate(route: string) {

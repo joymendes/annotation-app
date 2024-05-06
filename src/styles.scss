@@ -33,7 +33,7 @@ body {
   margin: 0 auto;
 }
 
-h1,h2,p {
+h1,h2,p,textarea {
   font-family: 'Inter', sans-serif !important;
   margin: 0 !important;
   color: white
@@ -43,4 +43,8 @@ section { display: grid; }
 
 .mat-mdc-unelevated-button:not(:disabled) {
   color: $on-primary !important;
+}
+
+.mat-mdc-card {
+  background: $surface-container !important;
 }

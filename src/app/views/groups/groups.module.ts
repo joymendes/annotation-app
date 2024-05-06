@@ -5,6 +5,8 @@ import { GroupsComponent } from './groups.component';
 import { SharedModule } from '../../shared/shared.module';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewGroupComponent } from './view-group/view-group.component';
+import { ViewGroupNoteComponent } from './view-group-note/view-group-note.component';
 
 
 const routes: Routes = [
@@ -15,13 +17,23 @@ const routes: Routes = [
   {
     path: 'criar',
     component: CreateGroupComponent
+  },
+  {
+    path: ':id',
+    component: ViewGroupComponent
+  },
+  {
+    path: 'nota/:id',
+    component: ViewGroupNoteComponent
   }
 ];
 
 @NgModule({
   declarations: [
     GroupsComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
+    ViewGroupComponent,
+    ViewGroupNoteComponent
   ],
   imports: [
     CommonModule,

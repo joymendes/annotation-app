@@ -1,0 +1,30 @@
+<app-header
+  [userData]="userData"
+  [goBack]="true"
+  [title]="'Grupo'">
+</app-header>
+
+<div class="app-view-group">
+  <div class="app-view-group__wrapper">
+    <h2>Notas do Grupo</h2>
+
+    <div class="app-view-group__content-wrapper" *ngIf="groupNotes?.length > 0; else noData">
+      <ng-container *ngFor="let note of groupNotes">
+        <div class="app-view-group__cards" (click)="showNote(note.key)">
+          <!-- <h3>{{note.title}}</h3> -->
+          <p>{{note?.content}}</p>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #noData>
+      <div class="app-view-group__no-data">
+        <p>Esse grupo ainda não possui nenhuma anotação.</p>
+        <p>Deseja criar uma? Clique no botão inferior direito.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<app-footer
+  (onFirstButtonClick)="navigate('/dashboard/criar')">
+</app-footer>

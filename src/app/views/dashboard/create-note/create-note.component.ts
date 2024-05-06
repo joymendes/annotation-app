@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GroupsService } from '../../services/groups.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-note',
@@ -14,13 +15,15 @@ export class CreateNoteComponent {
   private subscriptions = new Subscription();
   public userData: any;
   public userNotes: any;
+  public userGroups: any;
   public formGroup!: FormGroup;
 
   constructor(
     private dashboardService: DashboardService,
+    private groupsService: GroupsService,
     private authService: AuthService,
-    private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _location: Location
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +37,8 @@ export class CreateNoteComponent {
 
   setFormGroup() {
     this.formGroup = this.formBuilder.group({
-      text: [
-        '',
-        Validators.required
-      ]
+      group: [''],
+      text: [ '', Validators.required ]
     })
   }
 
@@ -48,7 +49,7 @@ export class CreateNoteComponent {
           if(response) {
             this.userData = response;
 
-            console.log(response);
+            this.getGroups(this.userData?.uid);
           }
         },
         (error) => {
@@ -58,6 +59,17 @@ export class CreateNoteComponent {
     )
   }
 
+  getGroups(uid: string) {
+    this.groupsService.getUserGroups(uid).subscribe(groups => {
+      if(groups) {
+        this.userGroups = groups;
+
+        console.log(this.userGroups, 'groups');
+
+      }
+    });
+  }
+
   async addNote() {
     console.log(this.formGroup.controls);
 
@@ -65,14 +77,15 @@ export class CreateNoteComponent {
       try {
         const payload = {
           content: this.formGroup.controls['text'].value,
-          uid: this.userData.uid
+          uid: this.userData.uid,
+          groupId: this.formGroup.controls['group'].value
         }
 
-        await this.dashboardService.addNote(payload.uid, payload.content);
+        await this.dashboardService.addNote(payload.uid, payload.content, payload.groupId);
 
         window.alert('Nota adicionada com sucesso!')
 
-        this.router.navigate(['/dashboard']);
+        this._location.back();
       } catch(error) {
         throw error;
       }

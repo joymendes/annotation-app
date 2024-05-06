@@ -33,6 +33,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { FooterComponent } from '../components/footer/footer.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -69,7 +70,8 @@ const materialModules = [
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,8 @@ const materialModules = [
   exports: [
     ...materialModules,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

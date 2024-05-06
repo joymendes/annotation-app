@@ -1,4 +1,4 @@
-.app-dashboard {
+.app-view-group {
   position: relative;
   width: 100%;
   max-height: calc(100vh - 250px);
@@ -12,10 +12,6 @@
       text-transform: uppercase;
       color: $secondary;
       margin-bottom: 16px !important;
-
-      i {
-        margin-right: 5px;
-      }
     }
   }
 
@@ -32,6 +28,7 @@
     border-radius: 4px;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
     background: $on-secondary;
+    cursor: pointer;
 
     p {
       white-space: nowrap;

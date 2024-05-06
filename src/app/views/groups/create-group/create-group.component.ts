@@ -104,7 +104,7 @@ export class CreateGroupComponent implements OnInit {
 
         this.router.navigate(['/grupos']);
       } catch(error) {
-        throw error;
+        window.alert(error);
       }
     }
   }

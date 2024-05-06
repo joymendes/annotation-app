@@ -1,16 +1,5 @@
-<header>
-  <!-- <app-header
-    [userData]="userData"
-    *ngIf="userData"
-  ></app-header> -->
-</header>
+<app-loader></app-loader>
 
-<main>
+<main *ngIf="isLoading">
   <router-outlet></router-outlet>
 </main>
-
-<footer>
-  <!-- <app-footer
-    *ngIf="userData"
-  ></app-footer> -->
-</footer>

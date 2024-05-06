@@ -7,15 +7,24 @@
 <div class="app-create-note">
   <div class="app-create-note__wrapper">
     <form [formGroup]="formGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Grupo</mat-label>
+        <select matNativeControl formControlName="group">
+          <option value="">Nenhum Grupo</option>
+          <option *ngFor="let group of userGroups" [value]="group.key">{{ group.title }}</option>
+        </select>
+      </mat-form-field>
+
       <textarea
         autofocus
         matInput
-        rows="20"
+        rows="15"
         placeholder="Comece sua anotação"
         formControlName="text"
         required
         maxlength="255"
         style="resize: none;"
+        (keydown.enter)="addNote()"
       ></textarea>
     </form>
   </div>

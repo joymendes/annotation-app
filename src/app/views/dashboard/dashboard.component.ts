@@ -3,6 +3,7 @@ import { DashboardService } from '../services/dashboard.service';
 import { AuthService } from '../../core/services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoaderService } from '../../core/services/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,12 +16,14 @@ export class DashboardComponent implements OnInit {
   public userNotes: any;
 
   constructor(
+    private loaderService: LoaderService,
     private dashboardService: DashboardService,
     private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.getUserData();
   }
 
@@ -49,25 +52,18 @@ export class DashboardComponent implements OnInit {
 
   getNotes(uid: string) {
     this.dashboardService.getNotes(uid).subscribe((response) => {
-      console.log(response, 'res notes');
       this.userNotes = response;
+
+      this.loaderService.hide();
     })
   }
 
   async deleteNote(key: string) {
     try {
-      await this.dashboardService.deleteNote(this.userData.uid, key);
+      await this.dashboardService.deleteNote(key);
     } catch (error) {
       throw error;
     }
-  }
-
-  submitNote(): void {
-    this.dashboardService.addNote(this.userData.uid, 'teste 2 kkkk').then(() => {
-      console.log('Note added successfully!');
-    }).catch(error => {
-      console.error('Error adding note:', error);
-    });
   }
 
   navigate(route: string) {

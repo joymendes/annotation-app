@@ -5,6 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './footer.component.html'
 })
 export class FooterComponent {
+  @Input() hideButton: boolean = false;
   @Input() buttonText: string = '';
   @Input() icon: string = '';
   @Output() onFirstButtonClick = new EventEmitter<void>();
